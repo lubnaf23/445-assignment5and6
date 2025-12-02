@@ -17,12 +17,12 @@ namespace BuyerService
         // Format: line of id:name
 
         // List all buyers from the database and return their id and name
-        public List<(int, String)> getBuyers()
+        public List<int> getBuyers()
         {
             String home = Environment.GetFolderPath(Environment.SpecialFolder.UserProfile);
             String path = Path.Combine(home, "buyers.txt");
 
-            List<(int, String)> ret = new List<(int, String)> ();
+            List<int> ret = new List<int>();
 
             try
             {
@@ -30,17 +30,17 @@ namespace BuyerService
                 {
                     String[] tokens = line.Split(':');
                     int id = int.Parse(tokens[0]);
-                    String name = tokens[1];
-
-                    ret.Add((id, name));
+                    ret.Add(id);
                 }
-            } catch (Exception e)
+            }
+            catch (Exception e)
             {
                 Console.WriteLine(e.Message);
             }
 
             return ret;
         }
+
 
         // Given an ID, resolve a name, return null if not found
         public String getBuyerName(int id)
