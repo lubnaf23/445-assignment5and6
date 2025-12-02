@@ -130,6 +130,7 @@
     <Content Include="Default.aspx" />
     <Content Include="favicon.ico" />
     <Content Include="Global.asax" />
+    <Content Include="member.aspx" />
     <Content Include="Scripts\bootstrap.bundle.js" />
     <Content Include="Scripts\bootstrap.bundle.min.js" />
     <Content Include="Scripts\bootstrap.esm.js" />
@@ -231,6 +232,13 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="member.aspx.cs">
+      <DependentUpon>member.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="member.aspx.designer.cs">
+      <DependentUpon>member.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Site.Master.cs">
       <DependentUpon>Site.Master</DependentUpon>
@@ -279,6 +287,18 @@
     <WCFMetadata Include="Connected Services\" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\BuyerService\BuyerService.csproj">
+      <Project>{043ec750-0326-4ca8-bb8b-77d9cf91347c}</Project>
+      <Name>BuyerService</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\DLLClass\DLLClass.csproj">
+      <Project>{3cfc8f55-97ed-4d3b-93e6-c32322bf99b4}</Project>
+      <Name>DLLClass</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\ItemListingService\ItemListingService.csproj">
+      <Project>{0f43a2c2-322b-4e3a-b678-b1bce3a3f369}</Project>
+      <Name>ItemListingService</Name>
+    </ProjectReference>
     <ProjectReference Include="..\SellerAccountService\SellerAccountService.csproj">
       <Project>{286d03c5-22e7-421f-aea3-0e80b2259725}</Project>
       <Name>SellerAccountService</Name>
