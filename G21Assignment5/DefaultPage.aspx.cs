@@ -13,5 +13,14 @@ namespace G21Assignment5
         {
 
         }
+        protected void btnMember_Click(object sender, EventArgs e)
+        {
+            Response.Redirect("Member.aspx");
+        }
+
+        protected void btnStaff_Click(object sender, EventArgs e)
+        {
+            Response.Redirect("Staff.aspx");
+        }
     }
 }
