@@ -41,11 +41,13 @@ namespace G21Assignment5
                 foreach (var staff in doc.Descendants("Staff"))
                 {
                     string user = staff.Element("Username")?.Value;
-                    string pass = staff.Element("Password")?.Value;
+                    string passwordHash = staff.Element("Password")?.Value;
 
-                    if (user != null && pass != null &&
+                    string input = SecurityHelper.HashString(password);
+
+                    if (!string.IsNullOrEmpty(user) &&
                         user.Equals(username, StringComparison.OrdinalIgnoreCase) &&
-                        pass == password)
+                        input == passwordHash)
                     {
                         return true;
                     }
