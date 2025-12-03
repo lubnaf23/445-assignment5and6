@@ -17,13 +17,13 @@ namespace G21Assignment5
             {
                 if (User.Identity.IsAuthenticated)
                 {
-                    // Show member dashboard
+                    //show member dashboard
                     pnlMemberContent.Visible = true;
-                    lblWelcomeUser.Text = $"Welcome, {User.Identity.Name}!"; // comes from FormsAuthentication cookie
+                    lblWelcomeUser.Text = $"Welcome, {User.Identity.Name}!"; //comes from FormsAuthentication cookie
                 }
                 else
                 {
-                    // Send back to login pageif not authenticated
+                    //send back to login pageif auth fails
                     Response.Redirect("Login.aspx");
                 }
             }
@@ -41,21 +41,21 @@ namespace G21Assignment5
             try
             {
                 G21Assignment5.ItemListingServiceRef.ItemListingServiceClient client = new G21Assignment5.ItemListingServiceRef.ItemListingServiceClient();
-                var listings = client.GetItems("", 1, 10);
+                var listings = client.GetItems("", 1, 10); //itemlisting
 
                 pnlMemberContent.Visible = true;
-                litListings.Text = ""; // clear
+                litListings.Text = ""; //clear
 
                 foreach (var item in listings)
                 {
-                    ProductCard card = (ProductCard)LoadControl("~/ProductCard.ascx");
+                    ProductCard card = (ProductCard)LoadControl("~/ProductCard.ascx"); //load card
                     card.ProductName = item.Name;
                     card.Description = item.Description;
                     card.Price = (double)item.Price;
                     card.IsAvailable = item.IsAvailable;
                     card.ImageUrl = item.ImageUrl;
 
-                    // Add the card to the placeholder container
+                    //add the card to placeholder container
                     phListings.Controls.Add(card);
                 }
 

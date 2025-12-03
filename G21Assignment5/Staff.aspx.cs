@@ -1,4 +1,4 @@
-﻿using DLLClass; // For SecurityHelper
+﻿using DLLClass; //for SecurityHelper
 using G21Assignment5.BuyerServiceRef;
 using G21Assignment5.SellerServiceRef;
 using System;
@@ -20,13 +20,13 @@ namespace G21Assignment5
             {
                 if (User.Identity.IsAuthenticated)
                 {
-                    // Show staff dashboard
+                    //show staff dashboard
                     pnlDashboard.Visible = true;
-                    lblWelcome.Text = $"Welcome, {User.Identity.Name}!"; // comes from FormsAuthentication cookie
+                    lblWelcome.Text = $"Welcome, {User.Identity.Name}!"; //comes from FormsAuthentication cookie not persisitent
                 }
                 else
                 {
-                    // Not authenticated → send back to staff login page
+                    //not authenticated = send back to staff login page
                     Response.Redirect("Staff.aspx");
                 }
             }
@@ -66,7 +66,7 @@ namespace G21Assignment5
             }
         }
 
-        protected void btnCreateListing_Click(object sender, EventArgs e)
+        protected void btnCreateListing_Click(object sender, EventArgs e) //creating
         {
             try
             {

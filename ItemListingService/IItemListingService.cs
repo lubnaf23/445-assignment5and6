@@ -18,7 +18,7 @@ namespace ItemListingService
     }
 
     [DataContract]
-    public class Item
+    public class Item //param for listing
     {
         [DataMember] public int Id { get; set; }
         [DataMember] public string Name { get; set; }

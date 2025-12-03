@@ -6,8 +6,8 @@
     <style>
         body { font-family: Arial; margin: 40px; background-color: #fafafa; }
         .container {
-            width: 100%;              /* full width */
-            max-width: 1400px;        /* wide enough for horizontal listings */
+            width: 100%;              /*full width*/
+            max-width: 1400px;        /*wide enough for horizontal listings*/
             margin: auto;
             padding: 30px;
             background-color: white;
@@ -36,12 +36,12 @@
         .welcome { text-align: center; color: green; font-weight: bold; }
         .listing-container {
             display: flex;
-            flex-wrap: nowrap;        /* keep all listings in one row */
+            flex-wrap: nowrap;        /*keep all listings in one row*/
             gap: 20px;
-            overflow-x: auto;         /* allow horizontal scroll if too many */
+            overflow-x: auto;         /*allow horizontal scroll if too many*/
         }
         .listing-container > * {
-            flex: 0 0 auto;           /* prevent stretching */
+            flex: 0 0 auto;           /*prevent stretching*/
         }
     </style>
 </head>
@@ -63,10 +63,10 @@
                         OnClick="btnViewListings_Click" CssClass="btn" />
                 </div>
 
-                <!-- Inline listing display -->
+                <!-- inline listing display -->
                 <asp:Literal ID="litListings" runat="server"></asp:Literal>
 
-                <!-- Horizontal listings -->
+                <!-- horizontal listings -->
                 <div class="listing-container">
                     <asp:PlaceHolder ID="phListings" runat="server"></asp:PlaceHolder>
                 </div>

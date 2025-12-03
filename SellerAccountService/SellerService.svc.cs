@@ -101,9 +101,9 @@ namespace SellerAccountService
             string listingsPath = GetListingXmlPath();
 
             if (!File.Exists(sellersPath))
-                return -1; // No sellers created yet
+                return -1; //no sellers created yet
 
-            // Load sellers
+            //load sellers
             XDocument sellersDoc = XDocument.Load(sellersPath);
 
             bool sellerExists = sellersDoc.Root.Elements("Seller")
@@ -112,7 +112,7 @@ namespace SellerAccountService
             if (!sellerExists)
                 return -1;
 
-            // Load or create Listings.xml
+            //load or create listings.xml
             XDocument listingsDoc;
             if (!File.Exists(listingsPath))
                 listingsDoc = new XDocument(new XElement("Listings"));
@@ -121,6 +121,7 @@ namespace SellerAccountService
 
             int nextListingId = listingsDoc.Root.Elements("Listing").Count() + 1;
 
+            //new listing
             XElement newListing = new XElement("Listing",
                 new XElement("Id", nextListingId),
                 new XElement("SellerId", sellerId),
