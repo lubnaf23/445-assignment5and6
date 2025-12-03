@@ -1,0 +1,32 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Listings>
+	<Listing>
+		<Id>1</Id>
+		<Name>Laptop</Name>
+		<Description>Laptop</Description>
+		<Price>999</Price>
+		<Seller>seller1</Seller>
+		<IsAvailable>true</IsAvailable>
+		<ImageUrl>~/Images/laptop.jpg</ImageUrl>
+	</Listing>
+
+	<Listing>
+		<Id>2</Id>
+		<Name>Keyboard</Name>
+		<Description>Mechanical keyboard</Description>
+		<Price>89</Price>
+		<Seller>seller2</Seller>
+		<IsAvailable>true</IsAvailable>
+		<ImageUrl>~/Images/keyboard.jpg</ImageUrl>
+	</Listing>
+
+	<Listing>
+		<Id>3</Id>
+		<Name>Mouse</Name>
+		<Description>Wireless mouse</Description>
+		<Price>29</Price>
+		<Seller>seller2</Seller>
+		<IsAvailable>true</IsAvailable>
+		<ImageUrl>~/Images/mouse.jpg</ImageUrl>
+	</Listing>
+</Listings>

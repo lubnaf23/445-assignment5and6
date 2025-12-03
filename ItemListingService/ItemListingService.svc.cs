@@ -5,34 +5,56 @@ using System.Runtime.Serialization;
 using System.ServiceModel;
 using System.ServiceModel.Web;
 using System.Text;
+using System.Web;
+using System.Xml.Linq;
 
 namespace ItemListingService
 {
     public class ItemListingService : IItemListingService
     {
-        private static List<Item> items = new List<Item>
-        {
-            new Item { Id = 1, Name="Laptop", Description="Laptop", Price=999, Seller="seller1", IsAvailable=true, ImageUrl = "~/Images/laptop.jpg" },
-            new Item { Id = 2, Name="Keyboard", Description="Mechanical keyboard", Price=89, Seller="seller2", IsAvailable=true, ImageUrl = "~/Images/keyboard.jpg" },
-            new Item { Id = 3, Name="Mouse", Description="Wireless mouse", Price=29, Seller="seller2", IsAvailable=true, ImageUrl = "~/Images/mouse.jpg" },
-            new Item { Id = 4, Name="Monitor", Description="24-inch monitor", Price=149, Seller="seller1", IsAvailable=true, ImageUrl = "~/Images/monitor.jpg" }
-        };
+        private readonly string listingsPath =
+        HttpContext.Current.Server.MapPath("~/Listings.xml");
 
         public List<Item> GetItems(string searchTerm = "", int page = 1, int pageSize = 10)
         {
-            IEnumerable<Item> result = items;
+            List<Item> items = LoadItems();
 
             // Optional search filter
             if (!string.IsNullOrWhiteSpace(searchTerm))
             {
-                result = result.Where(i => i.Name.IndexOf(searchTerm, StringComparison.OrdinalIgnoreCase) >= 0 ||
-                i.Description.IndexOf(searchTerm, StringComparison.OrdinalIgnoreCase) >= 0);
+                items = items.Where(i =>
+                    i.Name.IndexOf(searchTerm, StringComparison.OrdinalIgnoreCase) >= 0 ||
+                    i.Description.IndexOf(searchTerm, StringComparison.OrdinalIgnoreCase) >= 0)
+                    .ToList();
             }
 
             // Pagination
-            result = result.Skip((page - 1) * pageSize).Take(pageSize);
+            return items.Skip((page - 1) * pageSize)
+                        .Take(pageSize)
+                        .ToList();
+        }
 
-            return result.ToList();
+        // Helper: Reads Listings.xml and loads into Item objects
+        private List<Item> LoadItems()
+        {
+            List<Item> list = new List<Item>();
+
+            XDocument doc = XDocument.Load(listingsPath);
+            foreach (var node in doc.Root.Elements("Listing"))
+            {
+                list.Add(new Item
+                {
+                    Id = (int)node.Element("Id"),
+                    Name = (string)node.Element("Name"),
+                    Description = (string)node.Element("Description"),
+                    Price = (double)node.Element("Price"),
+                    Seller = (string)node.Element("Seller"),
+                    IsAvailable = (bool)node.Element("IsAvailable"),
+                    ImageUrl = (string)node.Element("ImageUrl")
+                });
+            }
+
+            return list;
         }
     }
 }

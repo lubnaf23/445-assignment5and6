@@ -44,6 +44,8 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.ServiceModel" />
     <Reference Include="System.Web.DynamicData" />
     <Reference Include="System.Web.Entity" />
     <Reference Include="System.Web.ApplicationServices" />
@@ -67,12 +69,107 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="About.aspx" />
+    <Content Include="App_Data\Listings.xml" />
+    <Content Include="App_Data\Member.xml" />
+    <Content Include="App_Data\Seller.xml" />
     <Content Include="App_Data\Staff.xml" />
+    <Content Include="CaptchaImage.aspx" />
+    <Content Include="Connected Services\BuyerServiceRef\G21Assignment5.BuyerServiceRef.Buyer.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
+    <None Include="Connected Services\BuyerServiceRef\Service1.wsdl" />
+    <None Include="Connected Services\BuyerServiceRef\Service1.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Connected Services\BuyerServiceRef\Service11.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Connected Services\BuyerServiceRef\Service12.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <Content Include="Connected Services\ItemListingServiceRef\G21Assignment5.ItemListingServiceRef.Item.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
+    <None Include="Connected Services\ItemListingServiceRef\ItemListingService.wsdl" />
+    <None Include="Connected Services\ItemListingServiceRef\ItemListingService.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Connected Services\ItemListingServiceRef\ItemListingService1.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Connected Services\ItemListingServiceRef\ItemListingService2.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Connected Services\SellerServiceRef\SellerService.disco" />
+    <None Include="Connected Services\SellerServiceRef\configuration91.svcinfo" />
+    <None Include="Connected Services\SellerServiceRef\configuration.svcinfo" />
+    <None Include="Connected Services\SellerServiceRef\Reference.svcmap">
+      <Generator>WCF Proxy Generator</Generator>
+      <LastGenOutput>Reference.cs</LastGenOutput>
+    </None>
+    <None Include="Connected Services\BuyerServiceRef\Service1.disco" />
+    <None Include="Connected Services\BuyerServiceRef\configuration91.svcinfo" />
+    <None Include="Connected Services\BuyerServiceRef\configuration.svcinfo" />
+    <None Include="Connected Services\BuyerServiceRef\Reference.svcmap">
+      <Generator>WCF Proxy Generator</Generator>
+      <LastGenOutput>Reference.cs</LastGenOutput>
+    </None>
+    <None Include="Connected Services\ItemListingServiceRef\ItemListingService.disco" />
+    <None Include="Connected Services\ItemListingServiceRef\configuration91.svcinfo" />
+    <None Include="Connected Services\ItemListingServiceRef\configuration.svcinfo" />
+    <None Include="Connected Services\ItemListingServiceRef\Reference.svcmap">
+      <Generator>WCF Proxy Generator</Generator>
+      <LastGenOutput>Reference.cs</LastGenOutput>
+    </None>
+    <Content Include="Contact.aspx" />
     <Content Include="DefaultPage.aspx" />
+    <Content Include="Global.asax" />
+    <Content Include="Login.aspx" />
+    <Content Include="member.aspx" />
+    <Content Include="ProductCard.ascx" />
+    <Content Include="SellerInfoDisplay.ascx" />
     <Content Include="Staff.aspx" />
+    <Content Include="TryIt.aspx" />
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="About.aspx.cs">
+      <DependentUpon>About.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="About.aspx.designer.cs">
+      <DependentUpon>About.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="CaptchaImage.aspx.cs">
+      <DependentUpon>CaptchaImage.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="CaptchaImage.aspx.designer.cs">
+      <DependentUpon>CaptchaImage.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Connected Services\BuyerServiceRef\Reference.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Compile>
+    <Compile Include="Connected Services\ItemListingServiceRef\Reference.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Compile>
+    <Compile Include="Connected Services\SellerServiceRef\Reference.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Compile>
+    <Compile Include="Contact.aspx.cs">
+      <DependentUpon>Contact.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Contact.aspx.designer.cs">
+      <DependentUpon>Contact.aspx</DependentUpon>
+    </Compile>
     <Compile Include="DefaultPage.aspx.cs">
       <DependentUpon>DefaultPage.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -80,7 +177,38 @@
     <Compile Include="DefaultPage.aspx.designer.cs">
       <DependentUpon>DefaultPage.aspx</DependentUpon>
     </Compile>
+    <Compile Include="Global.asax.cs">
+      <DependentUpon>Global.asax</DependentUpon>
+    </Compile>
+    <Compile Include="Login.aspx.cs">
+      <DependentUpon>Login.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Login.aspx.designer.cs">
+      <DependentUpon>Login.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="member.aspx.cs">
+      <DependentUpon>member.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="member.aspx.designer.cs">
+      <DependentUpon>member.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="ProductCard.ascx.cs">
+      <DependentUpon>ProductCard.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="ProductCard.ascx.designer.cs">
+      <DependentUpon>ProductCard.ascx</DependentUpon>
+    </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="SellerInfoDisplay.ascx.cs">
+      <DependentUpon>SellerInfoDisplay.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="SellerInfoDisplay.ascx.designer.cs">
+      <DependentUpon>SellerInfoDisplay.ascx</DependentUpon>
+    </Compile>
     <Compile Include="Staff.aspx.cs">
       <DependentUpon>Staff.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -88,8 +216,22 @@
     <Compile Include="Staff.aspx.designer.cs">
       <DependentUpon>Staff.aspx</DependentUpon>
     </Compile>
+    <Compile Include="TryIt.aspx.cs">
+      <DependentUpon>TryIt.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="TryIt.aspx.designer.cs">
+      <DependentUpon>TryIt.aspx</DependentUpon>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
+    <None Include="Connected Services\SellerServiceRef\SellerService.wsdl" />
+    <None Include="Connected Services\SellerServiceRef\SellerService.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Connected Services\SellerServiceRef\SellerService1.xsd">
+      <SubType>Designer</SubType>
+    </None>
     <None Include="packages.config" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
@@ -103,6 +245,14 @@
       <Project>{3cfc8f55-97ed-4d3b-93e6-c32322bf99b4}</Project>
       <Name>DLLClass</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <WCFMetadata Include="Connected Services\" />
+  </ItemGroup>
+  <ItemGroup>
+    <WCFMetadataStorage Include="Connected Services\BuyerServiceRef\" />
+    <WCFMetadataStorage Include="Connected Services\ItemListingServiceRef\" />
+    <WCFMetadataStorage Include="Connected Services\SellerServiceRef\" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

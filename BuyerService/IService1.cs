@@ -12,13 +12,26 @@ namespace BuyerService
     public interface IService1
     {
         [OperationContract]
-        // Returns a list of buyer IDs
-        List<int> getBuyers();
+        // Returns a list of buyer information
+        List<Buyer> getBuyers();
 
         [OperationContract]
-        String getBuyerName(int id);
+        string getBuyerName(string email);
 
         [OperationContract]
-        int addBuyer(String name);
+        bool addBuyer(string email, string hashedPw, string name);
+    }
+
+    [DataContract]
+    public class Buyer
+    {
+        [DataMember]
+        public String Email { get; set; }
+
+        [DataMember]
+        public string HashedPw { get; set; }
+
+        [DataMember]
+        public String Name { get; set; }
     }
 }

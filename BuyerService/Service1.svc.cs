@@ -7,34 +7,40 @@ using System.Runtime.Serialization;
 using System.ServiceModel;
 using System.ServiceModel.Web;
 using System.Text;
+using System.Web;
+using System.Xml.Linq;
 
 namespace BuyerService
 {
-    // NOTE: You can use the "Rename" command on the "Refactor" menu to change the class name "Service1" in code, svc and config file together.
-    // NOTE: In order to launch WCF Test Client for testing this service, please select Service1.svc or Service1.svc.cs at the Solution Explorer and start debugging.
     public class Service1 : IService1
     {
+        private string GetXmlPath()
+        {
+            return HttpContext.Current.Server.MapPath("~/Member.xml");
+        }
+
         // Format: line of id:name
 
-        // List all buyers from the database and return their id and name
-        public List<(int, String)> getBuyers()
+        // List all buyers from the database and return their email and name
+        public List<Buyer> getBuyers()
         {
-            String home = Environment.GetFolderPath(Environment.SpecialFolder.UserProfile);
-            String path = Path.Combine(home, "buyers.txt");
 
-            List<(int, String)> ret = new List<(int, String)> ();
+            List<Buyer> ret = new List<Buyer>();
 
             try
             {
-                foreach (String line in File.ReadLines(path))
+                string path = GetXmlPath();
+                XDocument doc = XDocument.Load(path);
+                foreach (var member in doc.Descendants("member"))
                 {
-                    String[] tokens = line.Split(':');
-                    int id = int.Parse(tokens[0]);
-                    String name = tokens[1];
+                    string email = member.Element("email")?.Value;
+                    string name = member.Element("name")?.Value;
+                    string hashedPw = member.Element("hashedPw")?.Value;
 
-                    ret.Add((id, name));
+                    ret.Add(new Buyer { Email = email, Name = name, HashedPw = hashedPw });
                 }
-            } catch (Exception e)
+            }
+            catch (Exception e)
             {
                 Console.WriteLine(e.Message);
             }
@@ -42,61 +48,62 @@ namespace BuyerService
             return ret;
         }
 
-        // Given an ID, resolve a name, return null if not found
-        public String getBuyerName(int id)
+        // Given an email, resolve a name, return null if not found
+        public String getBuyerName(string email)
         {
-            String home = Environment.GetFolderPath(Environment.SpecialFolder.UserProfile);
-            String path = Path.Combine(home, "buyers.txt");
-
-
             try
             {
-                foreach (String line in File.ReadLines(path))
-                {
-                    // If the found ID matches our id, return.
-                    String[] tokens = line.Split(':');
-                    int num = int.Parse(tokens[0]);
-                    if (num == id) return tokens[1];
-                }
+                string path = GetXmlPath();
+                XDocument doc = XDocument.Load(path);
+                var member = doc.Descendants("member")
+                                .FirstOrDefault(m => m.Element("email")?.Value == email);
+
+                if (member != null)
+                    return member.Element("name")?.Value;
             }
             catch (Exception e)
             {
                 Console.WriteLine(e.Message);
             }
+
             return null;
         }
 
-        public int addBuyer(String name) {
-            String home = Environment.GetFolderPath(Environment.SpecialFolder.UserProfile);
-            String path = Path.Combine(home, "buyers.txt");
-
-            // Keep score of the largest discovered ID number
-            int largest = 0;
-
+        public bool addBuyer(string email, string hashedPw, string name)
+        {
             try
             {
-                foreach (String line in File.ReadLines(path))
+                string path = GetXmlPath();
+                XDocument doc;
+                if (File.Exists(path))
                 {
-                    String[] tokens = line.Split(':');
-                    int id = int.Parse(tokens[0]);
-                    if (id > largest) largest = id;
+                    doc = XDocument.Load(path);
 
-                    String found_name = tokens[1];
-
-                    // Disallow duplicate names for now
-                    if (name == found_name) return -1;
+                    // Disallow duplicate emails
+                    if (doc.Descendants("member").Any(m => m.Element("email")?.Value == email))
+                        return false;
                 }
+                else
+                {
+                    doc = new XDocument(new XElement("members"));
+                }
+
+                // Add new member
+                doc.Root.Add(new XElement("member",
+                    new XElement("email", email),
+                    new XElement("hashedPw", hashedPw),
+                    new XElement("name", name)
+                ));
+
+                doc.Save(path);
+                return true;
             }
             catch (Exception e)
             {
                 Console.WriteLine(e.Message);
             }
-            int new_id = largest + 1;
-            using (StreamWriter stream = new StreamWriter(path))
-            {
-                stream.WriteLine($"{new_id}:{name}");
-            }
-            return new_id;
+
+            return false;
         }
     }
 }

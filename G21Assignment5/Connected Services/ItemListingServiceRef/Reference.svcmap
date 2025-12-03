@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ReferenceGroup xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" ID="3edda803-dd89-4a4b-b123-9f49b449053d" xmlns="urn:schemas-microsoft-com:xml-wcfservicemap">
+  <ClientOptions>
+    <GenerateAsynchronousMethods>false</GenerateAsynchronousMethods>
+    <GenerateTaskBasedAsynchronousMethod>true</GenerateTaskBasedAsynchronousMethod>
+    <EnableDataBinding>true</EnableDataBinding>
+    <ExcludedTypes />
+    <ImportXmlTypes>false</ImportXmlTypes>
+    <GenerateInternalTypes>false</GenerateInternalTypes>
+    <GenerateMessageContracts>false</GenerateMessageContracts>
+    <NamespaceMappings />
+    <CollectionMappings />
+    <GenerateSerializableTypes>true</GenerateSerializableTypes>
+    <Serializer>Auto</Serializer>
+    <UseSerializerForFaults>true</UseSerializerForFaults>
+    <ReferenceAllAssemblies>true</ReferenceAllAssemblies>
+    <ReferencedAssemblies />
+    <ReferencedDataContractTypes />
+    <ServiceContractMappings />
+  </ClientOptions>
+  <MetadataSources>
+    <MetadataSource Address="http://webstrar21.fulton.asu.edu/page0/ItemListingService.svc" Protocol="http" SourceId="1" />
+  </MetadataSources>
+  <Metadata>
+    <MetadataFile FileName="ItemListingService.xsd" MetadataType="Schema" ID="f5fb4780-efc7-4774-b335-51450802b6b1" SourceId="1" SourceUrl="http://webstrar21.fulton.asu.edu/Page0/ItemListingService.svc?xsd=xsd0" />
+    <MetadataFile FileName="ItemListingService.disco" MetadataType="Disco" ID="f3a4d7fa-3dc6-4df1-93f5-d69730582221" SourceId="1" SourceUrl="http://webstrar21.fulton.asu.edu/Page0/ItemListingService.svc?disco" />
+    <MetadataFile FileName="ItemListingService1.xsd" MetadataType="Schema" ID="1fd2f868-cce7-4c4e-a0cd-cdfce56e4c0c" SourceId="1" SourceUrl="http://webstrar21.fulton.asu.edu/Page0/ItemListingService.svc?xsd=xsd2" />
+    <MetadataFile FileName="ItemListingService.wsdl" MetadataType="Wsdl" ID="93e31ff5-ab34-4885-b594-24dd1811fd14" SourceId="1" SourceUrl="http://webstrar21.fulton.asu.edu/Page0/ItemListingService.svc?wsdl" />
+    <MetadataFile FileName="ItemListingService2.xsd" MetadataType="Schema" ID="388c75e7-3f23-423f-a67e-426d64d664a5" SourceId="1" SourceUrl="http://webstrar21.fulton.asu.edu/Page0/ItemListingService.svc?xsd=xsd1" />
+  </Metadata>
+  <Extensions>
+    <ExtensionFile FileName="configuration91.svcinfo" Name="configuration91.svcinfo" />
+    <ExtensionFile FileName="configuration.svcinfo" Name="configuration.svcinfo" />
+  </Extensions>
+</ReferenceGroup>

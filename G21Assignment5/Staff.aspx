@@ -18,25 +18,54 @@
 <body>
     <form id="form1" runat="server">
         <div class="container">
-            <h2>Staff Login</h2>
-
-            <asp:Panel ID="pnlLogin" runat="server">
-                <asp:TextBox ID="txtUsername" runat="server" CssClass="input-field" placeholder="Username"></asp:TextBox>
-                <asp:TextBox ID="txtPassword" runat="server" CssClass="input-field" TextMode="Password" placeholder="Password"></asp:TextBox>
-                <asp:Button ID="btnLogin" runat="server" Text="Login" CssClass="btn" OnClick="btnLogin_Click" />
-                <asp:Label ID="lblStatus" runat="server" CssClass="status"></asp:Label>
-            </asp:Panel>
 
             <asp:Panel ID="pnlDashboard" runat="server" Visible="false">
                 <asp:Label ID="lblWelcome" runat="server" CssClass="welcome"></asp:Label>
                 <br /><br />
+                <h2>Seller Management</h2>
+                <asp:Label ID="lblSellerStatus" runat="server" CssClass="status"></asp:Label><br />
+                <br />
+
+                <!-- Create Seller -->
+                <fieldset style="border: 1px solid #ccc; padding: 10px; border-radius: 6px;">
+                    <legend><b>Create Seller</b></legend>
+                    <asp:TextBox ID="txtSellerEmail" runat="server" CssClass="input-field" placeholder="Seller Email"></asp:TextBox>
+                    <asp:TextBox ID="txtSellerName" runat="server" CssClass="input-field" placeholder="Seller Name"></asp:TextBox>
+                    <asp:TextBox ID="txtSellerPassword" runat="server" CssClass="input-field" TextMode="Password" placeholder="Password"></asp:TextBox>
+                    <asp:Button ID="btnCreateSeller" runat="server" Text="Create Seller" CssClass="btn" OnClick="btnCreateSeller_Click" />
+                </fieldset>
+
+                <br />
+
+                <!-- Create Listing -->
+                <fieldset style="border: 1px solid #ccc; padding: 10px; border-radius: 6px;">
+                    <legend><b>Create Listing</b></legend>
+                    <asp:TextBox ID="txtListingSellerId" runat="server" CssClass="input-field" placeholder="Seller ID"></asp:TextBox>
+                    <asp:TextBox ID="txtListingName" runat="server" CssClass="input-field" placeholder="Item Name"></asp:TextBox>
+                    <asp:TextBox ID="txtListingPrice" runat="server" CssClass="input-field" placeholder="Price"></asp:TextBox>
+                    <asp:Button ID="btnCreateListing" runat="server" Text="Create Listing" CssClass="btn" OnClick="btnCreateListing_Click" />
+                    <asp:Label ID="lblListingStatus" runat="server" CssClass="status"></asp:Label>
+                </fieldset>
+
+                <br />
+
+                <!-- View Members -->
+                <fieldset style="border: 1px solid #ccc; padding: 10px; border-radius: 6px;">
+                    <legend><b>View Buyers</b></legend>
+                    <asp:Button ID="btnViewBuyers" runat="server" Text="View All Buyers"
+                        CssClass="btn" OnClick="btnViewBuyers_Click" />
+                    <div style="margin-top: 15px;">
+                        <asp:Literal ID="litBuyers" runat="server"></asp:Literal>
+                    </div>
+                </fieldset>
+
+                <br />
                 <asp:Button ID="btnLogout" runat="server" Text="Logout" CssClass="btn" OnClick="btnLogout_Click" />
                 <br /><br />
-                <h3>Staff Dashboard</h3>
             </asp:Panel>
 
             <br />
-            <asp:HyperLink NavigateUrl="DefaultPage.aspx" runat="server">← Back to Home</asp:HyperLink>
+            <asp:HyperLink NavigateUrl="DefaultPage.aspx" runat="server">Back to Home</asp:HyperLink>
         </div>
     </form>
 </body>
