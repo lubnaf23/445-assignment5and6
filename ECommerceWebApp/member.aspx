@@ -30,6 +30,6 @@
     <asp:Panel ID="pnlMemberContent" runat="server" GroupingText="Member Dashboard" Visible="false">
         <h3>Welcome, <asp:Label ID="lblWelcomeUser" runat="server" /></h3>
         <p>Placeholder: Cart/listings (e.g., <asp:Button ID="btnViewListings" runat="server" Text="View Listings" OnClick="btnViewListings_Click" CssClass="btn btn-info" />).</p>
-        <asp:Button ID="btnLogout" runat="server" Text="Logout" OnClick="btnLogout_Click" CssClass="btn btn-secondary" />
+        <asp:Button ID="btnLogout" runat="server" Text="Logout" OnClick="btnLogout_Click" />
     </asp:Panel>
  </asp:Content>

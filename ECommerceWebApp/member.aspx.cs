@@ -4,6 +4,7 @@ using System.Web.Security;//forms
 using System.Xml;
 using System.IO;
 using DLLClass;
+using ItemListingService;
 using SellerAccountService;
 
 namespace ECommerceWebApp
@@ -76,13 +77,13 @@ namespace ECommerceWebApp
                 lblRegisterError.Visible = true;
                 return;
             }
-            string hashedPw = SecurityHelper.Encrypt(txtRegPassword.Text, ""); // Your DLL
+            string hashedPw = SecurityHelper.Encrypt(txtRegPassword.Text, ""); //dll hash
             if (AddToMemberXML(txtRegEmail.Text, hashedPw, txtRegName.Text))
             {
                 lblRegisterError.Text = "Registered successfully! Login above.";
                 lblRegisterError.ForeColor = System.Drawing.Color.Green;
                 lblRegisterError.Visible = true;
-                ShowLogin(null, null); // Switch panels
+                ShowLogin(null, null); //switch panels
             }
             else
             {
@@ -101,11 +102,17 @@ namespace ECommerceWebApp
         protected void btnViewListings_Click(object sender, EventArgs e)
         {
             //seller service
-            lblWelcomeUser.Text += " - Listings loaded (call CreateListing here)";
-            //SellerAccountService.SellerServiceClient client = new SellerAccountService.SellerServiceClient();
-        }
+            lblWelcomeUser.Text += "listings loaded";
+                //SellerAccountService.SellerServiceClient client = new SellerAccountService.SellerServiceClient();
 
-        // Helper Methods
+         }
+       
+
+                
+
+        
+
+        //helpers
         private bool ValidateUser(string email, string pw)
         {
             string path = Server.MapPath("~/Member.xml");
@@ -115,7 +122,7 @@ namespace ECommerceWebApp
             XmlNodeList nodes = doc.SelectNodes($"/members/member[email='{email}']");
             if (nodes.Count == 0) return false;
             string storedHash = nodes[0].SelectSingleNode("hashedPw").InnerText;
-            return SecurityHelper.Encrypt(pw, "") == storedHash; // DLL compare
+            return SecurityHelper.Encrypt(pw, "") == storedHash; //DLL compare
         }
 
         private bool AddToMemberXML(string email, string hashedPw, string name)
